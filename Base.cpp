@@ -1,14 +1,14 @@
 //////////////////////////
-// Filename: Screen.cpp
+// Filename: Base.cpp
 // Author: Martin Almaraz
-// Date: Sun Apr 19 21:00:59 PDT 2015
+// Date: Fri May  8 13:49:48 PDT 2015
 //////////////////////////
 
-#include "Screen.h"
+
+#include "Base.h"
 using namespace std;
 
-int main()
+Base::Base()
 {
 
-    return 0;
 }

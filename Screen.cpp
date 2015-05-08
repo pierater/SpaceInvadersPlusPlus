@@ -9,11 +9,12 @@
 #include <ctime>
 #include <cstdlib>
 #include <iostream>
+#include <ncurses>
+#include <iostream>
 using namespace std;
 
 Screen::Screen()
 {
-	playerHits = 0;
 	playerScore = 0;
 	ENEMIES = 10;
 	
@@ -25,7 +26,7 @@ Screen::Screen()
 
 bool Screen::checkEndGame()
 {
-	if(playerHits <= 0)
+	if(player.health <= 0)
 		endGame();
 	//Other endgame things go here
 
@@ -111,6 +112,55 @@ bool Screen::checkCollisions()
 		if(board[0][i].isEnemy() && playery == i)
 			playerHits++;
 }
+
+void Screen::playGame()
+{
+	
+}
+
+void Screen::getInput()
+{
+	char input;
+	input = getch();
+	cbreak();
+	
+	if(input == 'a')
+		moveLeft();
+	else if(input == 'd')
+		moveRight();
+	else if(input == ' ')
+		shoot();
+	return;	
+	
+
+}
+
+void Screen::moveLeft()
+{
+	if(player.getx() - 1 >= 0)
+		player.setPosition(player.getx() - 1);
+	else
+		player.setPosition(player.getx());
+}
+
+void Screen::moveRight()
+{
+	if(player.getx() + 1 < 100)
+		player.setPosition(player.getx() + 1)
+	else
+		player.setPosition(player.getx());
+
+
+}
+
+void Screen::shoot()
+{
+	cout << "shoot\n";
+
+}
+
+
+
 
 
 

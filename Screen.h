@@ -7,6 +7,8 @@
 #ifndef SCREEN_H
 #define SCREEN_H
 #include "Enemy.h"
+#include "Ship.h"
+#include <ncurses.h>
 
 using namespace std;
 
@@ -14,13 +16,14 @@ class Screen
 {
 	private:
 		Enemy board[100][100];
-		int playerHits;
 		int playerScore;
 		Enemy empty;
 		int ENEMIES;
+		Ship player;
 
 	public:
 	    Screen();
+		void playGame();
 		void shiftDown();
 		bool checkEndGame();
 		void increaseScore(int score);
@@ -31,6 +34,10 @@ class Screen
 		void endGame();
 		void displayHits();
 		void clearScreen();
+		void getInput();
+		void moveLeft();
+		void moveRight();
+		void shoot();
 };
 
 #endif
