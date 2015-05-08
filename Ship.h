@@ -22,6 +22,7 @@ class Ship: public Base
 
     public:
         // accessors
+		Ship();
         int getHealth()const{return health;}
         int getX()const{return position_x;}
         char getShip()const{return ship;}
@@ -30,5 +31,6 @@ class Ship: public Base
         // mutators
         void setHealth (int health);
         void setPosition (int position_x);
+		void setIcon(char icon);
 };
 #endif // SHIP ends here

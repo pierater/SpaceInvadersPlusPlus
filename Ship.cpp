@@ -1,22 +1,31 @@
 // ****************************
 // ship.cpp
 // ****************************
+#include "Ship.h"
+#include "Base.h"
 using namespace std;
 
 Ship::Ship()
 {
     health = 3;
-    position = 10; // this will be changed later to make sure that it will be at center
+    position_x = 10; // this will be changed later to make sure that it will be at center
     ship = 'A';
     ex_ship = 'X';
 }
 
-void setHealth (int health)
+void Ship::setHealth (int health)
 {
     this->health = health;
 }
 
-void setPosition(int position_x)
+void Ship::setPosition(int position_x)
 {
     this->position_x = position_x;
 }
+
+void Ship::setIcon(char icon)
+{
+	ship = icon;
+}
+
+

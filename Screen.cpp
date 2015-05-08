@@ -52,10 +52,10 @@ void Screen::shiftDown()
 	for(int i = 0; i < 100; i++)
 	{
 		for(int j = 0; j < 100; j++)
-		}
-			if(temp[i][j].getIcon != 'A' && temp.getIcon() != '|')
+		{
+			if(temp[i][j]->getIcon() != 'A' && temp[i][j + 1]->getIcon() != '|')
 				board[i+1][j] = temp[i][j];
-			else if(temp[i][j].getIcon() == '|')
+			else if(temp[i][j]->getIcon() == '|')
 				board[i][j] = temp[i][j];
 			
 		}
@@ -109,17 +109,17 @@ void Screen::increaseScore(int score)
 
 void Screen::displayScore()
 {
-	cout << "Score: " << score;
+	cout << "Score: " << playerScore;
 }
 
 void Screen::hitPlayer()
 {
-	playerHits++;
+	player.setHealth(player.getHealth() - 1);
 }
 
 void Screen::displayHits()
 {
-	cout << "Hits: " << playerHits;
+	cout << "Hits: " << 3 - player.getHealth() << endl;
 }
 
 void Screen::displayScreen()
@@ -127,7 +127,7 @@ void Screen::displayScreen()
 	for(int i = 0; i < 100; i++)
 	{
 		for(int j = 0; j < 100; j++)
-			cout << board.getIcon();
+			cout << board[i][j]->getIcon();
 		cout << endl;
 	}
 	cout << "\t\t\t";
@@ -147,12 +147,12 @@ bool Screen::checkCollisions()
 	{
 		for(int j = 0; j < 100; j++)
 		{
-			if(board[i][j].getIcon() == '*' && board[i + 1][j].getIcon() == '|')
+			if(board[i][j]->getIcon() == '*' && board[i + 1][j]->getIcon() == '|')
 			{
-				playerScore += board[i][j].getAward();
-				board[i][j].setIcon(' ');
+				playerScore += board[i][j]->getAward();
+				board[i][j]->setIcon(' ');
 			}
-			else if(board[i][j].getIcon() == '*' && board[i][j + 1].getIcon() == 'A')
+			else if(board[i][j]->getIcon() == '*' && board[i][j + 1]->getIcon() == 'A')
 			{
 				// player hits - 1, spaceship is no longer there
 			}
@@ -185,18 +185,18 @@ void Screen::getInput()
 
 void Screen::moveLeft()
 {
-	if(player.getx() - 1 >= 0)
-		player.setPosition(player.getx() - 1);
+	if(player.getX() - 1 >= 0)
+		player.setPosition(player.getX() - 1);
 	else
-		player.setPosition(player.getx());
+		player.setPosition(player.getX());
 }
 
 void Screen::moveRight()
 {
-	if(player.getx() + 1 < 100)
-		player.setPosition(player.getx() + 1)
+	if(player.getX() + 1 < 100)
+		player.setPosition(player.getX() + 1);
 	else
-		player.setPosition(player.getx());
+		player.setPosition(player.getX());
 
 
 }

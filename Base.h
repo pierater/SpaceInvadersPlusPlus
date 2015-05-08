@@ -12,9 +12,12 @@ using namespace std;
 class Base
 {
     private:
+		char icon;
     public:
         Base();
 		virtual void setIcon(char icon) = 0;
+		virtual char getIcon() const {return icon;}
+		virtual int getAward();
 };
 
 #endif
