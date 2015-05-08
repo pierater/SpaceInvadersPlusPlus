@@ -4,7 +4,7 @@
 
 
 
-class Enemy
+class Enemy : public Base
 {
     private:
         int enemy_health;
