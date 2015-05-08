@@ -8,6 +8,7 @@
 #define SCREEN_H
 #include "Enemy.h"
 #include "Ship.h"
+#include "Base.h"
 #include <ncurses.h>
 
 using namespace std;
@@ -15,7 +16,7 @@ using namespace std;
 class Screen
 {
 	private:
-		Enemy board[100][100];
+		Base *board[100][100];	
 		int playerScore;
 		Enemy empty;
 		int ENEMIES;
