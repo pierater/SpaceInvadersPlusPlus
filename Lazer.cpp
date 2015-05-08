@@ -10,7 +10,7 @@ using namespace std;
 
 Lazer::Lazer()
 {
-	icon = "|";
+	icon = '|';
 
 }
 

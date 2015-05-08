@@ -9,7 +9,7 @@
 #include <ctime>
 #include <cstdlib>
 #include <iostream>
-#include <ncurses>
+#include <ncurses.h>
 #include <iostream>
 using namespace std;
 
@@ -21,18 +21,22 @@ Screen::Screen()
 	
 	
 	for(int i = 0; i < 100; i++)
+	{
 		for(int j = 0; j < 100; j++)
+		{
 			board[i][j] = new Enemy();
-			board[i][j].setIcon(' ');
+			board[i][j]->setIcon(' ');
+		}
+	}
 	delete board[50][100];
 	board[50][100] = new Ship();
-	board[50][100].setIcon('A');
+	board[50][100]->setIcon('A');
 		
 }
 
 bool Screen::checkEndGame()
 {
-	if(player.health <= 0)
+	if(player.getHealth() <= 0)
 		endGame();
 	//Other endgame things go here
 

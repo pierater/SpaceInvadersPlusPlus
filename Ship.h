@@ -8,10 +8,11 @@
 
 #ifndef SHIP_H
 #define SHIP_H
+#include "Base.h"
 
 using namespace std;
 
-class Ship
+class Ship: public Base
 {
     private:
         int health;

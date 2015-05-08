@@ -14,6 +14,7 @@ class Base
     private:
     public:
         Base();
+		virtual void setIcon(char icon) = 0;
 };
 
 #endif

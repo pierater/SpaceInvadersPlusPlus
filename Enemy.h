@@ -25,7 +25,7 @@ class Enemy : public Base
         void setY(int y);
         void setIcon(char icon);
         void setAward(int award);
-        void setEnemyhealth(int enemy_health);
+        void setEnemyHealth(int enemy_health);
         void setIsDead(bool is_dead);
         void isHit();
         void checkIsDead();
