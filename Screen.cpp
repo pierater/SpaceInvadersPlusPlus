@@ -18,9 +18,15 @@ Screen::Screen()
 	playerScore = 0;
 	ENEMIES = 10;
 	
+	
+	
 	for(int i = 0; i < 100; i++)
 		for(int j = 0; j < 100; j++)
+			board[i][j] = new Enemy();
 			board[i][j].setIcon(' ');
+	delete board[50][100];
+	board[50][100] = new Ship();
+	board[50][100].setIcon('A');
 		
 }
 
@@ -34,10 +40,34 @@ bool Screen::checkEndGame()
 
 void Screen::shiftDown()
 {
+	Base *temp[100][100];
+	for(int i = 0; i < 100; i++)
+		for(int j = 0; j < 100; j++)
+			temp[i][j] = board[i][j];
+		
+	for(int i = 0; i < 100; i++)
+	{
+		for(int j = 0; j < 100; j++)
+		}
+			if(temp[i][j].getIcon != 'A' && temp.getIcon() != '|')
+				board[i+1][j] = temp[i][j];
+			else if(temp[i][j].getIcon() == '|')
+				board[i][j] = temp[i][j];
+			
+		}
+	}
+			
+
+
+
+
+
+	/*
 	Enemy temp[100][100];
 	for (int i = 0; i < 100; i++)
 		for(int j = 0; j < 100; j++)
-			temp[i][j] = board[i][j];
+			temp[i][j] = board[i][j]; 
+		// Copies board to a temp file
 	
 	for(int i = 1; i < 100; i++)
 	{
@@ -63,6 +93,7 @@ void Screen::shiftDown()
 		random = rand() % 101;
 		board[random][i] = newEnemy;
 	}
+*/
 	
 }
 
@@ -109,8 +140,21 @@ void Screen::clearScreen()
 bool Screen::checkCollisions()
 {
 	for(int i = 0; i < 100; i++)
-		if(board[0][i].isEnemy() && playery == i)
-			playerHits++;
+	{
+		for(int j = 0; j < 100; j++)
+		{
+			if(board[i][j].getIcon() == '*' && board[i + 1][j].getIcon() == '|')
+			{
+				playerScore += board[i][j].getAward();
+				board[i][j].setIcon(' ');
+			}
+			else if(board[i][j].getIcon() == '*' && board[i][j + 1].getIcon() == 'A')
+			{
+				// player hits - 1, spaceship is no longer there
+			}
+		}
+	}
+				
 }
 
 void Screen::playGame()
