@@ -1,6 +1,6 @@
-#ifndef SHIP_H
-#define SHIP_H
-
+// ****************************
+// ship.cpp
+// ****************************
 using namespace std;
 
 Ship::Ship()
