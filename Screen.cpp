@@ -16,8 +16,10 @@ using namespace std;
 Screen::Screen()
 {
 	//keypad(stdscr, TRUE);
+	srand(time(NULL));
 	playerScore = 0;
 	ENEMIES = 10;
+	int random;
 
 
 
@@ -28,6 +30,12 @@ Screen::Screen()
 			board[i][j] = new Enemy();
 			board[i][j]->setIcon(' ');
 		}
+	}
+	
+	for(int i = 0; i < ENEMIES; i++)
+	{
+		random = rand() % 100;
+		board[random][0]->setIcon('V');
 	}
 	delete board[50][100];
 	board[50][100] = new Ship();
