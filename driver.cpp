@@ -18,6 +18,6 @@ using namespace std;
 int main()
 {
     Screen test_game;
-    test_game.runGame();
+    test_game.playGame();
     return 0;
 }

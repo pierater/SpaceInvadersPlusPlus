@@ -38,7 +38,8 @@ Screen::Screen()
 bool Screen::checkEndGame()
 {
 	if(player.getHealth() <= 0)
-		endGame();
+		return false;
+	return true;
 	//Other endgame things go here
 
 }
@@ -55,7 +56,7 @@ void Screen::shiftDown()
 		for(int j = 0; j < 100; j++)
 		{
 		    if(i == 99)
-                board[i][j] = ' ';
+                board[i][j]->setIcon(' ');
 			else if(temp[i][j]->getIcon() != 'A' && temp[i][j + 1]->getIcon() != '|')
 				board[i+1][j] = temp[i][j];
 			else if(temp[i][j]->getIcon() == '|')
@@ -166,7 +167,23 @@ bool Screen::checkCollisions()
 
 void Screen::playGame()
 {
+	unsigned long int counter = 0;
+	do
+	{
+		if(counter == 4000000000)
+		{
+			shiftDown();
+			counter = 0;
+		}
+		else
+			counter++;
+		displayScreen();
+		getInput();
+		checkCollisions();
+		clearScreen();
 
+
+	}while(checkEndGame());
 }
 
 void Screen::getInput()
