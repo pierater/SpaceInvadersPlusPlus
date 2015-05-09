@@ -8,7 +8,7 @@ using namespace std;
 Ship::Ship()
 {
     health = 3;
-    position_x = 10; // this will be changed later to make sure that it will be at center
+    position_x = 25; // this will be changed later to make sure that it will be at center
     ship = 'A';
     ex_ship = 'X';
 }
