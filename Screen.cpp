@@ -18,9 +18,9 @@ Screen::Screen()
 	//keypad(stdscr, TRUE);
 	playerScore = 0;
 	ENEMIES = 10;
-	
-	
-	
+
+
+
 	for(int i = 0; i < 100; i++)
 	{
 		for(int j = 0; j < 100; j++)
@@ -32,7 +32,7 @@ Screen::Screen()
 	delete board[50][100];
 	board[50][100] = new Ship();
 	board[50][100]->setIcon('A');
-		
+
 }
 
 bool Screen::checkEndGame()
@@ -49,19 +49,21 @@ void Screen::shiftDown()
 	for(int i = 0; i < 100; i++)
 		for(int j = 0; j < 100; j++)
 			temp[i][j] = board[i][j];
-		
+
 	for(int i = 0; i < 100; i++)
 	{
 		for(int j = 0; j < 100; j++)
 		{
-			if(temp[i][j]->getIcon() != 'A' && temp[i][j + 1]->getIcon() != '|')
+		    if(i == 99)
+                board[i][j] = ' ';
+			else if(temp[i][j]->getIcon() != 'A' && temp[i][j + 1]->getIcon() != '|')
 				board[i+1][j] = temp[i][j];
 			else if(temp[i][j]->getIcon() == '|')
 				board[i][j] = temp[i][j];
-			
+
 		}
 	}
-			
+
 
 
 
@@ -71,16 +73,16 @@ void Screen::shiftDown()
 	Enemy temp[100][100];
 	for (int i = 0; i < 100; i++)
 		for(int j = 0; j < 100; j++)
-			temp[i][j] = board[i][j]; 
+			temp[i][j] = board[i][j];
 		// Copies board to a temp file
-	
+
 	for(int i = 1; i < 100; i++)
 	{
 		int k = 0;
 		for(int j = 0; j < 100; j++)
 		{
 			if(j != player x && i != playery)
-				board[i][j] = temp[k][j];	
+				board[i][j] = temp[k][j];
 		}
 	}
 
@@ -88,7 +90,7 @@ void Screen::shiftDown()
 	{
 		board[i][0] = empty;
 	}
-	
+
 	int random;
 	srand(time(NULL));
 	random = rand() % ENEMIES + 1;
@@ -99,13 +101,13 @@ void Screen::shiftDown()
 		board[random][i] = newEnemy;
 	}
 */
-	
+
 }
 
 
 void Screen::increaseScore(int score)
 {
-	playerScore += score;	
+	playerScore += score;
 }
 
 void Screen::displayScore()
@@ -159,12 +161,12 @@ bool Screen::checkCollisions()
 			}
 		}
 	}
-				
+
 }
 
 void Screen::playGame()
 {
-	
+
 }
 
 void Screen::getInput()
@@ -172,15 +174,15 @@ void Screen::getInput()
 	char input;
 	input = getch();
 	//cbreak();
-	
+
 	if(input == 'a')
 		moveLeft();
 	else if(input == 'd')
 		moveRight();
 	else if(input == ' ')
 		shoot();
-	return;	
-	
+	return;
+
 
 }
 
@@ -219,7 +221,7 @@ void Screen::endGame()
 {
 	for(int i = 0; i < 100; i++)
 		cout << endl;
-	
+
 	cout << "\t\t\tSCORE: " << playerScore << endl;
 	cout << "\t\t\tGAME OVER\n\n\n";
 
