@@ -1,6 +1,8 @@
 
 #include "Enemy.h"
 #include <cassert>
+
+using namespace std;
 Enemy::Enemy()
 {
     positionX = 0;

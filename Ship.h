@@ -32,5 +32,6 @@ class Ship: public Base
         void setHealth (int health);
         void setPosition (int position_x);
 		void setIcon(char icon);
+		virtual int getAward();
 };
 #endif // SHIP ends here

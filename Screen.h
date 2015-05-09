@@ -18,7 +18,6 @@ class Screen
 	private:
 		Base *board[100][100];	
 		int playerScore;
-		Enemy empty;
 		int ENEMIES;
 		Ship player;
 
@@ -39,6 +38,8 @@ class Screen
 		void moveLeft();
 		void moveRight();
 		void shoot();
+	
+		~Screen();
 };
 
 #endif

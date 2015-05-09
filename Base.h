@@ -13,11 +13,13 @@ class Base
 {
     private:
 		char icon;
+		int award;
     public:
         Base();
-		virtual void setIcon(char icon) = 0;
+		virtual void setIcon(char icon);
 		virtual char getIcon() const {return icon;}
-		virtual int getAward();
+		virtual int getAward() const {return award;}
+
 };
 
 #endif

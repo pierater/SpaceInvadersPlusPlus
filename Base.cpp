@@ -10,5 +10,10 @@ using namespace std;
 
 Base::Base()
 {
+	int y;
+}
 
+void Base::setIcon(char icon)
+{
+	this->icon = icon;
 }

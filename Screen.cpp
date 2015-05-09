@@ -15,6 +15,7 @@ using namespace std;
 
 Screen::Screen()
 {
+	//keypad(stdscr, TRUE);
 	playerScore = 0;
 	ENEMIES = 10;
 	
@@ -170,7 +171,7 @@ void Screen::getInput()
 {
 	char input;
 	input = getch();
-	cbreak();
+	//cbreak();
 	
 	if(input == 'a')
 		moveLeft();
@@ -207,6 +208,22 @@ void Screen::shoot()
 
 }
 
+Screen::~Screen()
+{
+	for(int i = 0; i < 100; i++)
+		for(int j = 0; j < 100; j++)
+			delete board[i][j];
+}
+
+void Screen::endGame()
+{
+	for(int i = 0; i < 100; i++)
+		cout << endl;
+	
+	cout << "\t\t\tSCORE: " << playerScore << endl;
+	cout << "\t\t\tGAME OVER\n\n\n";
+
+}
 
 
 

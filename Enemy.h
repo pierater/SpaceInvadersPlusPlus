@@ -17,9 +17,9 @@ class Enemy : public Base
         Enemy();
         int getX()const {return positionX;}
         int getY()const {return positionY;}
-        int getAward() const {return award;}
+        virtual int getAward() {return award;}
         int getEnemyHealth()const {return enemy_health;}
-        char getIcon()const {return icon;}
+        virtual char getIcon()const {return icon;}
         bool getIsDead()const {return is_dead;}
         void setX(int x);
         void setY(int y);
