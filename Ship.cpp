@@ -28,4 +28,8 @@ void Ship::setIcon(char icon)
 	ship = icon;
 }
 
+int Ship::getAward()
+{
+
+}
 
