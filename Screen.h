@@ -20,6 +20,8 @@ class Screen
 		int playerScore;
 		int ENEMIES;
 		Ship player;
+		int XSIZE;
+		int YSIZE;
 
 	public:
 	    Screen();

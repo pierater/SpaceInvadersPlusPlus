@@ -19,27 +19,29 @@ Screen::Screen()
 	srand(time(NULL));
 	playerScore = 0;
 	ENEMIES = 10;
+	XSIZE = 50;
+	YSIZE = 50;
 	int random;
 
 
 
-	for(int i = 0; i < 100; i++)
+	for(int i = 0; i < XSIZE; i++)
 	{
-		for(int j = 0; j < 100; j++)
+		for(int j = 0; j < XSIZE; j++)
 		{
 			board[i][j] = new Enemy();
-			board[i][j]->setIcon(' ');
+			board[i][j]->setIcon('~');
 		}
 	}
 	
 	for(int i = 0; i < ENEMIES; i++)
 	{
-		random = rand() % 100;
+		random = rand() % XSIZE;
 		board[random][0]->setIcon('V');
 	}
-	delete board[50][100];
-	board[50][100] = new Ship();
-	board[50][100]->setIcon('A');
+	delete board[50][XSIZE];
+	board[50][XSIZE] = new Ship();
+	board[50][XSIZE]->setIcon('A');
 
 }
 
@@ -54,17 +56,17 @@ bool Screen::checkEndGame()
 
 void Screen::shiftDown()
 {
-	Base *temp[100][100];
-	for(int i = 0; i < 100; i++)
-		for(int j = 0; j < 100; j++)
+	Base *temp[XSIZE][XSIZE];
+	for(int i = 0; i < XSIZE; i++)
+		for(int j = 0; j < XSIZE; j++)
 			temp[i][j] = board[i][j];
 
-	for(int i = 0; i < 100; i++)
+	for(int i = 0; i < XSIZE; i++)
 	{
-		for(int j = 0; j < 100; j++)
+		for(int j = 0; j < XSIZE; j++)
 		{
 		    if(i == 99)
-                board[i][j]->setIcon(' ');
+                board[i][j]->setIcon('~');
 			else if(temp[i][j]->getIcon() != 'A' && temp[i][j + 1]->getIcon() != '|')
 				board[i+1][j] = temp[i][j];
 			else if(temp[i][j]->getIcon() == '|')
@@ -79,23 +81,23 @@ void Screen::shiftDown()
 
 
 	/*
-	Enemy temp[100][100];
-	for (int i = 0; i < 100; i++)
-		for(int j = 0; j < 100; j++)
+	Enemy temp[XSIZE][XSIZE];
+	for (int i = 0; i < XSIZE; i++)
+		for(int j = 0; j < XSIZE; j++)
 			temp[i][j] = board[i][j];
 		// Copies board to a temp file
 
-	for(int i = 1; i < 100; i++)
+	for(int i = 1; i < XSIZE; i++)
 	{
 		int k = 0;
-		for(int j = 0; j < 100; j++)
+		for(int j = 0; j < XSIZE; j++)
 		{
 			if(j != player x && i != playery)
 				board[i][j] = temp[k][j];
 		}
 	}
 
-	for(int i = 0; i < 100; i++)
+	for(int i = 0; i < XSIZE; i++)
 	{
 		board[i][0] = empty;
 	}
@@ -136,35 +138,35 @@ void Screen::displayHits()
 
 void Screen::displayScreen()
 {
-	for(int i = 0; i < 100; i++)
+	for(int i = 0; i < XSIZE; i++)
 	{
-		for(int j = 0; j < 100; j++)
+		for(int j = 0; j < XSIZE; j++)
 			cout << board[i][j]->getIcon();
 		cout << endl;
 	}
-	cout << "\t\t\t";
+	cout << "\t\t\t\t\t\t\t";
 	displayHits();
 	displayScore();
 }
 
 void Screen::clearScreen()
 {
-	for(int i = 0; i < 100; i++)
+	for(int i = 0; i < XSIZE; i++)
 		cout << "\n";
 }
 
 bool Screen::checkCollisions()
 {
-	for(int i = 0; i < 100; i++)
+	for(int i = 0; i < XSIZE; i++)
 	{
-		for(int j = 0; j < 100; j++)
+		for(int j = 0; j < XSIZE; j++)
 		{
 			if(board[i][j]->getIcon() == '*' && board[i + 1][j]->getIcon() == '|')
 			{
 				playerScore += board[i][j]->getAward();
-				board[i][j]->setIcon(' ');
+				board[i][j]->setIcon('~');
 			}
-			else if(board[i][j]->getIcon() == '*' && board[i][j + 1]->getIcon() == 'A')
+			else if(board[i][j]->getIcon() == 'V' && board[i][j + 1]->getIcon() == 'A')
 			{
 				// player hits - 1, spaceship is no longer there
 			}
@@ -221,7 +223,7 @@ void Screen::moveLeft()
 
 void Screen::moveRight()
 {
-	if(player.getX() + 1 < 100)
+	if(player.getX() + 1 < XSIZE)
 		player.setPosition(player.getX() + 1);
 	else
 		player.setPosition(player.getX());
@@ -237,14 +239,14 @@ void Screen::shoot()
 
 Screen::~Screen()
 {
-	for(int i = 0; i < 100; i++)
-		for(int j = 0; j < 100; j++)
+	for(int i = 0; i < XSIZE; i++)
+		for(int j = 0; j < XSIZE; j++)
 			delete board[i][j];
 }
 
 void Screen::endGame()
 {
-	for(int i = 0; i < 100; i++)
+	for(int i = 0; i < XSIZE; i++)
 		cout << endl;
 
 	cout << "\t\t\tSCORE: " << playerScore << endl;
