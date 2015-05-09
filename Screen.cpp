@@ -11,7 +11,8 @@
 #include <iostream>
 #include <ncurses.h>
 #include <iostream>
-#include <unistd.h>
+#include <stdio.h>
+#include <pthread.h>
 
 using namespace std;
 
@@ -39,7 +40,7 @@ Screen::Screen()
 	for(int i = 0; i < ENEMIES; i++)
 	{
 		random = rand() % XSIZE;
-		board[random][0]->setIcon('V');
+		board[0][random]->setIcon('V');
 	}
 	delete board[50][XSIZE];
 	board[50][XSIZE] = new Ship();
@@ -50,7 +51,7 @@ Screen::Screen()
 bool Screen::checkEndGame()
 {
 	if(player.getHealth() <= 0)
-		return false;
+		return true;
 	return true;
 	//Other endgame things go here
 
@@ -67,7 +68,7 @@ void Screen::shiftDown()
 	{
 		for(int j = 0; j < XSIZE; j++)
 		{
-		    if(i == 99)
+		    if(i == 49)
                 board[i][j]->setIcon('~');
 			else if(temp[i][j]->getIcon() != 'A' && temp[i][j + 1]->getIcon() != '|')
 				board[i+1][j] = temp[i][j];
@@ -182,12 +183,13 @@ void Screen::playGame()
 
 	do
 	{
-		shiftDown();
+		
 		displayScreen();
 		getInput();
 		checkCollisions();
 		clearScreen();
-		usleep(1000);
+		sleep(1);
+		//shiftDown();
 
 
 	}while(checkEndGame());
@@ -231,7 +233,6 @@ void Screen::moveRight()
 void Screen::shoot()
 {
 	cout << "SHOOOOOOOOTTT\n";
-	exit(1);
 
 }
 
@@ -252,6 +253,11 @@ void Screen::endGame()
 
 }
 
+void Screen::sleep(unsigned int mseconds)
+{
+    clock_t goal = mseconds + clock();
+    while (goal > clock());
+}
 
 
 

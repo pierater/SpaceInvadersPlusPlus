@@ -40,6 +40,7 @@ class Screen
 		void moveLeft();
 		void moveRight();
 		void shoot();
+		void sleep(unsigned int secs);
 	
 		~Screen();
 };
