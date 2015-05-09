@@ -11,6 +11,8 @@
 #include <iostream>
 #include <ncurses.h>
 #include <iostream>
+#include <unistd.h>
+
 using namespace std;
 
 Screen::Screen()
@@ -177,20 +179,15 @@ bool Screen::checkCollisions()
 
 void Screen::playGame()
 {
-	unsigned long int counter = 0;
+
 	do
 	{
-		if(counter == 4000000000)
-		{
-			shiftDown();
-			counter = 0;
-		}
-		else
-			counter++;
+		shiftDown();
 		displayScreen();
 		getInput();
 		checkCollisions();
 		clearScreen();
+		usleep(1000);
 
 
 	}while(checkEndGame());
