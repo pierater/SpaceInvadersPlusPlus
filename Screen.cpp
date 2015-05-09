@@ -198,15 +198,15 @@ void Screen::playGame()
 
 void Screen::getInput()
 {
-	char input;
+	int input;
 	input = getch();
-	//cbreak();
+	cbreak();
 
-	if(input == 'a')
+	if(input == 97)
 		moveLeft();
-	else if(input == 'd')
+	else if(input == 100)
 		moveRight();
-	else if(input == ' ')
+	else if(input == 109)
 		shoot();
 	return;
 
@@ -233,7 +233,8 @@ void Screen::moveRight()
 
 void Screen::shoot()
 {
-	cout << "shoot\n";
+	cout << "SHOOOOOOOOTTT\n";
+	exit(1);
 
 }
 
